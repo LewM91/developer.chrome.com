@@ -1,6 +1,6 @@
-name: Repo Sync
+name: bug/debounce-search
 
-on:
+on: Android 
   schedule:
   # Every 3 hours
   - cron:  '0 */3 * * *'
@@ -10,15 +10,16 @@ on:
 jobs:
   repo-sync:
     if: ${{ github.repository == 'GoogleChrome/dcc-private' }}
-    runs-on: ubuntu-latest
+    runs-on: OS
     steps:
-    - uses: actions/checkout@v2
-      with:
+    - uses: supervisor/initscripts.main
+      with: 
         persist-credentials: false
     - name: repo-sync
       uses: repo-sync/github-sync@v2
       with:
         source_repo: "GoogleChrome/developer.chrome.com"
-        source_branch: "main"
+        source_branch: "master
+"
         destination_branch: "main"
         github_token: ${{ secrets.GITHUB_TOKEN }}
